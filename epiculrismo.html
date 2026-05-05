@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Jardim Digital: Epicurismo na Era da Internet</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Tailwind Config for Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'epicur-bg': '#fcfaf8', // very light warm stone
+                        'epicur-surface': '#f3eee8', // slightly darker stone
+                        'epicur-text': '#2c2925', // dark brown/grey
+                        'epicur-accent': '#2e6b4e', // garden green
+                        'epicur-highlight': '#b57b3c' // muted amber
+                    },
+                    fontFamily: {
+                        'serif': ['Merriweather', 'Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Embedded CSS for Chart Containers and Specific Interactions */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Hide scrollbar for clean aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcfaf8; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        .remedy-card {
+            transition: all 0.3s ease;
+        }
+        .remedy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-epicur-bg text-epicur-text font-sans antialiased leading-relaxed">
+
+    <!-- Chosen Palette: Warm Neutrals (Stone) with Garden Green and Amber Accents -->
+    <!-- Application Structure Plan: A linear, interactive essay format. It uses a sticky sidebar for navigation (desktop) to allow users to easily follow the reordered logical flow (1,2,3,6,5). Each section introduces a concept, provides a textual explanation (based on Brasil Escola), and includes an interactive element (tabs, charts, flip cards) to make the philosophical concepts tangible before culminating in the requested thesis regarding the internet. -->
+    <!-- Visualization & Content Choices: 
+         1. Intro: Text + Quote. Sets the stage.
+         2. Pleasure: Interactive Tabs -> Clarifies the biggest misconception about Epicureanism (Hedonism vs. Ataraxia).
+         3. Desires: Chart.js Doughnut -> Visually categorizes desires to show the "diet" of an Epicurean.
+         4. (Originally 6) Tetrapharmakos: Interactive Grid Cards -> Reveals the "cures" progressively, engaging the user.
+         5. Thesis: Chart.js Bar Chart -> Contrasts modern digital behaviors with Epicurean goals to support the thesis visually.
+         Libraries: Vanilla JS for interactions, Chart.js for data viz. NO SVG or Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-epicur-bg/90 backdrop-blur-md border-b border-epicur-surface z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="font-serif font-bold text-xl text-epicur-accent">O Jardim Digital</div>
+                <div class="hidden md:flex space-x-6 text-sm font-medium text-epicur-text/80">
+                    <a href="#sec-1" class="hover:text-epicur-accent transition">1. O Jardim</a>
+                    <a href="#sec-2" class="hover:text-epicur-accent transition">2. Ataraxia</a>
+                    <a href="#sec-3" class="hover:text-epicur-accent transition">3. Desejos</a>
+                    <a href="#sec-6" class="hover:text-epicur-accent transition">4. Remédios</a>
+                    <a href="#sec-5" class="hover:text-epicur-accent transition font-bold">5. Tese: Internet</a>
+                </div>
+                <!-- Mobile Menu Button (simplified for SPA) -->
+                <div class="md:hidden text-epicur-accent font-bold">Menu ▼</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <p class="text-epicur-highlight font-semibold tracking-wider uppercase text-sm mb-2">Atividade de Filosofia</p>
+            <h1 class="font-serif text-4xl md:text-5xl font-extrabold mb-4 text-epicur-text">A Filosofia do Epicurismo</h1>
+            <p class="text-lg text-epicur-text/70 max-w-2xl mx-auto">Uma análise interativa dos ensinamentos de Epicuro, baseada no Brasil Escola, aplicada aos dilemas da era hiperconectada.</p>
+        </header>
+
+        <!-- Tópico 1: Introdução -->
+        <section id="sec-1" class="mb-20 scroll-mt-24">
+            <div class="border-l-4 border-epicur-accent pl-6 py-2 mb-8">
+                <h2 class="font-serif text-3xl font-bold">1. O Jardim de Epicuro e o Contexto</h2>
+            </div>
+            <div class="prose max-w-none text-epicur-text/80 space-y-4">
+                <p>Nesta seção introdutória, estabelecemos quem foi Epicuro e o ambiente de sua filosofia. Ao contrário das academias tradicionais, a escola epicurista era inovadora e inclusiva.</p>
+                <div class="bg-epicur-surface p-6 rounded-lg mt-6 shadow-sm">
+                    <p>Segundo o site Brasil Escola, o Epicurismo foi uma corrente filosófica do período Helenístico, fundada por <strong>Epicuro de Samos</strong> (341 a.C. - 270 a.C.). O local onde a filosofia era ensinada e vivenciada tornou-se famoso como <strong>"O Jardim"</strong>.</p>
+                    <ul class="list-disc pl-5 mt-4 space-y-2">
+                        <li><strong>Inclusão:</strong> O Jardim era notável por admitir mulheres e escravos, algo raro na Antiguidade.</li>
+                        <li><strong>Foco:</strong> A filosofia deixava de ser uma busca puramente teórica sobre a natureza do universo e passava a ser uma ferramenta prática para alcançar a felicidade humana.</li>
+                        <li><strong>Materialismo/Atomismo:</strong> Toda a realidade é composta por átomos e vazio. Não há vida após a morte, o que, paradoxalmente para eles, era um alívio.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tópico 2: A Natureza do Prazer -->
+        <section id="sec-2" class="mb-20 scroll-mt-24">
+            <div class="border-l-4 border-epicur-accent pl-6 py-2 mb-8">
+                <h2 class="font-serif text-3xl font-bold">2. A Ética: O Verdadeiro Significado do Prazer</h2>
+            </div>
+            <p class="mb-6 text-epicur-text/80">O epicurismo é classificado como um <strong>hedonismo</strong> (doutrina baseada no prazer). No entanto, o senso comum costuma distorcer essa visão. Explore a interação abaixo para entender a diferença crucial.</p>
+
+            <!-- Interactive Toggle: False Hedonism vs True Epicureanism -->
+            <div class="bg-white border border-epicur-surface rounded-xl overflow-hidden shadow-sm">
+                <div class="flex border-b border-epicur-surface">
+                    <button id="btn-comum" class="flex-1 py-4 text-center font-bold text-epicur-text/60 bg-epicur-surface hover:bg-epicur-surface/80 transition focus:outline-none">Senso Comum (Hedonismo Vulgar)</button>
+                    <button id="btn-epicuro" class="flex-1 py-4 text-center font-bold text-white bg-epicur-accent focus:outline-none">Hedonismo Epicurista</button>
+                </div>
+                <div class="p-8 min-h-[200px] flex items-center justify-center">
+                    <div id="content-comum" class="hidden text-center">
+                        <div class="text-4xl mb-4">🍷💰🎉</div>
+                        <h3 class="text-xl font-bold mb-2">Busca Incessante e Excessos</h3>
+                        <p class="text-epicur-text/80">A crença de que o prazer significa a busca desenfreada por luxo, comida em excesso, riqueza e fama. Epicuro alertava que esse tipo de "prazer" inevitavelmente gera dor, dependência e ansiedade.</p>
+                    </div>
+                    <div id="content-epicuro" class="text-center">
+                        <div class="text-4xl mb-4">🌿🧘‍♂️🍞</div>
+                        <h3 class="text-xl font-bold mb-2 text-epicur-accent">Ataraxia e Aponia</h3>
+                        <p class="text-epicur-text/80">Para Epicuro, o sumo bem é a <strong>Aponia</strong> (ausência de dor física) e, principalmente, a <strong>Ataraxia</strong> (imperturbabilidade da alma, paz de espírito). O verdadeiro prazer é alcançado pela moderação, amizade e satisfação das necessidades básicas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tópico 3: Classificação dos Desejos -->
+        <section id="sec-3" class="mb-20 scroll-mt-24">
+            <div class="border-l-4 border-epicur-accent pl-6 py-2 mb-8">
+                <h2 class="font-serif text-3xl font-bold">3. A "Matemática" da Felicidade: Os Desejos</h2>
+            </div>
+            <p class="mb-6 text-epicur-text/80">Para alcançar a Ataraxia, o Brasil Escola destaca que Epicuro criou uma categorização rigorosa dos desejos. Saber o que desejar é a chave para não sofrer. O gráfico abaixo ilustra a proporção ideal de dedicação a cada tipo de desejo na vida de um sábio epicurista.</p>
+
+            <div class="chart-container">
+                <canvas id="desiresChart"></canvas>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 mt-8">
+                <div class="bg-epicur-surface p-4 rounded-lg">
+                    <h4 class="font-bold text-epicur-accent mb-2">Naturais e Necessários</h4>
+                    <p class="text-sm text-epicur-text/80">Comer quando se tem fome, beber quando se tem sede, dormir, abrigar-se. Devem ser <strong>sempre satisfeitos</strong>, pois garantem a sobrevivência e removem a dor.</p>
+                </div>
+                <div class="bg-epicur-surface p-4 rounded-lg">
+                    <h4 class="font-bold text-epicur-highlight mb-2">Naturais e Não Necessários</h4>
+                    <p class="text-sm text-epicur-text/80">Comer pratos refinados, beber vinhos caros, confortos excessivos. Devem ser <strong>consumidos com muita moderação</strong>, pois podem gerar dependência.</p>
+                </div>
+                <div class="bg-epicur-surface p-4 rounded-lg">
+                    <h4 class="font-bold text-red-700 mb-2">Não Naturais e Não Necessários</h4>
+                    <p class="text-sm text-epicur-text/80">Busca por fama, poder político, riqueza excessiva e imortalidade. Devem ser <strong>totalmente evitados</strong>, pois são vazios e geram apenas angústia e frustração.</p>
+                </div>
+            </div>
+            
+            <!-- Nota sobre o item 4 descartado -->
+            <div class="mt-8 text-xs text-epicur-text/40 text-center italic">
+                * Conforme estruturação solicitada, avançamos diretamente para os remédios da alma, focando na ética prática.
+            </div>
+        </section>
+
+        <!-- Tópico 6 (Reposicionado): O Tetraphármakon -->
+        <section id="sec-6" class="mb-20 scroll-mt-24">
+            <div class="border-l-4 border-epicur-accent pl-6 py-2 mb-8">
+                <h2 class="font-serif text-3xl font-bold">4. Tetraphármakon: Os Quatro Remédios</h2>
+            </div>
+            <p class="mb-6 text-epicur-text/80">A filosofia para Epicuro tinha uma função terapêutica. O <em>Tetraphármakon</em> (quádruplo remédio) resume a cura para as quatro grandes angústias humanas. <strong>Clique nos frascos para revelar os remédios.</strong></p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Remédio 1 -->
+                <div class="remedy-card bg-white border border-epicur-surface p-6 rounded-xl cursor-pointer" onclick="toggleRemedy(1)">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-2xl">🏺</span>
+                        <span class="text-epicur-text/40 text-sm font-bold">Receita I</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">O Temor aos Deuses</h3>
+                    <p id="rem-1-text" class="hidden text-epicur-text/80 mt-4 pt-4 border-t border-epicur-surface">"Não há o que temer dos deuses." Se eles são seres perfeitos e bem-aventurados, não se importam em punir ou intervir na vida dos meros mortais.</p>
+                </div>
+                
+                <!-- Remédio 2 -->
+                <div class="remedy-card bg-white border border-epicur-surface p-6 rounded-xl cursor-pointer" onclick="toggleRemedy(2)">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-2xl">🏺</span>
+                        <span class="text-epicur-text/40 text-sm font-bold">Receita II</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">O Temor à Morte</h3>
+                    <p id="rem-2-text" class="hidden text-epicur-text/80 mt-4 pt-4 border-t border-epicur-surface">"Não há nada a temer na morte." É a privação de sensações. Enquanto existimos, a morte não está presente; quando a morte chega, nós já não existimos.</p>
+                </div>
+
+                <!-- Remédio 3 -->
+                <div class="remedy-card bg-white border border-epicur-surface p-6 rounded-xl cursor-pointer" onclick="toggleRemedy(3)">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-2xl">🏺</span>
+                        <span class="text-epicur-text/40 text-sm font-bold">Receita III</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">A Obtenção do Bem</h3>
+                    <p id="rem-3-text" class="hidden text-epicur-text/80 mt-4 pt-4 border-t border-epicur-surface">"O que é bom é fácil de conseguir." As necessidades naturais e básicas do corpo e da mente (água, pão, amizade) são simples e abundantes.</p>
+                </div>
+
+                <!-- Remédio 4 -->
+                <div class="remedy-card bg-white border border-epicur-surface p-6 rounded-xl cursor-pointer" onclick="toggleRemedy(4)">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-2xl">🏺</span>
+                        <span class="text-epicur-text/40 text-sm font-bold">Receita IV</span>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">O Suporte da Dor</h3>
+                    <p id="rem-4-text" class="hidden text-epicur-text/80 mt-4 pt-4 border-t border-epicur-surface">"O que é terrível é fácil de suportar." Dores agudas duram pouco tempo; dores crônicas são brandas e o corpo se adapta. A mente pode focar em memórias prazerosas para suportá-las.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tópico 5: Tese - A Internet -->
+        <section id="sec-5" class="scroll-mt-24 bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-epicur-surface">
+            <div class="border-l-4 border-epicur-accent pl-6 py-2 mb-8">
+                <span class="text-epicur-highlight font-bold uppercase text-xs tracking-widest">Tese Principal</span>
+                <h2 class="font-serif text-3xl font-bold mt-1">5. O Epicurismo na Era da Internet: A Busca pela Ataraxia Digital</h2>
+            </div>
+            
+            <div class="prose max-w-none text-epicur-text/80 mb-8">
+                <p class="text-lg leading-relaxed">
+                    A sociedade contemporânea, imersa no ambiente digital e nas redes sociais, opera em <strong>oposição diametral aos princípios do Epicurismo</strong> delineados pelo Brasil Escola. Se a filosofia de Epicuro busca a <em>Ataraxia</em> (paz de espírito) através da minimização dos desejos artificiais, a arquitetura da internet moderna é projetada justamente para fabricar ansiedade e desejos ilimitados.
+                </p>
+                
+                <h3 class="text-xl font-bold text-epicur-text mt-6 mb-3">A Máquina de Desejos "Não Naturais e Não Necessários"</h3>
+                <p>
+                    As redes sociais são a materialização dos "desejos não naturais e não necessários". A busca por curtidas (fama), a comparação constante com o estilo de vida de influenciadores (luxo) e o "Fear Of Missing Out" - FOMO (medo de ficar de fora) criam um estado de perturbação constante da alma. Para um epicurista moderno, o algoritmo é o antônimo do <em>Tetraphármakon</em>.
+                </p>
+
+                <h3 class="text-xl font-bold text-epicur-text mt-6 mb-3">Amizade Virtual vs. O Jardim</h3>
+                <p>
+                    Epicuro valorizava imensamente a amizade presencial, considerando-a um dos maiores bens para a felicidade segura. A internet oferece conexões rasas e massivas. Substituir os diálogos filosóficos do "Jardim" pelo "scroll infinito" solitário em telas brilhantes é abandonar a verdadeira comunidade pela ilusão de pertencimento, gerando isolamento e depressão.
+                </p>
+            </div>
+
+            <!-- Gráfico Analítico da Tese -->
+            <div class="mt-10 mb-6 border-t border-epicur-surface pt-8">
+                <h4 class="text-center font-bold mb-6 text-epicur-text">Impacto das Atividades no Estado da Alma (Visão Epicurista)</h4>
+                <div class="chart-container">
+                    <canvas id="thesisChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-epicur-bg p-6 rounded-lg border-l-4 border-epicur-highlight mt-8">
+                <p class="font-bold text-epicur-text mb-2">Conclusão da Tese:</p>
+                <p class="text-sm">
+                    A aplicação do Epicurismo hoje exige um <strong>"Minimalismo Digital"</strong>. Significa auditar nossos usos da internet questionando: "Este aplicativo satisfaz uma necessidade natural, ou cria um desejo artificial que perturba minha paz?". A verdadeira rebelião filosófica no século XXI não é desconectar-se totalmente, mas curar ativamente nosso próprio "Jardim Digital", protegendo nossa <em>Ataraxia</em> das métricas de vaidade do ciberespaço.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-epicur-surface py-8 text-center text-epicur-text/60 text-sm">
+        <p>Atividade de Filosofia desenvolvida com base no conteúdo do Brasil Escola.</p>
+        <p class="mt-2">Tema: Epicurismo | Estrutura Lógica Aplicada: 1, 2, 3, 6, 5</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Interaction Logic for Section 2 (Pleasure Tabs) ---
+        const btnComum = document.getElementById('btn-comum');
+        const btnEpicuro = document.getElementById('btn-epicuro');
+        const contentComum = document.getElementById('content-comum');
+        const contentEpicuro = document.getElementById('content-epicuro');
+
+        btnComum.addEventListener('click', () => {
+            btnComum.classList.replace('bg-epicur-surface', 'bg-epicur-accent');
+            btnComum.classList.replace('text-epicur-text/60', 'text-white');
+            btnEpicuro.classList.replace('bg-epicur-accent', 'bg-epicur-surface');
+            btnEpicuro.classList.replace('text-white', 'text-epicur-text/60');
+            contentComum.classList.remove('hidden');
+            contentEpicuro.classList.add('hidden');
+        });
+
+        btnEpicuro.addEventListener('click', () => {
+            btnEpicuro.classList.replace('bg-epicur-surface', 'bg-epicur-accent');
+            btnEpicuro.classList.replace('text-epicur-text/60', 'text-white');
+            btnComum.classList.replace('bg-epicur-accent', 'bg-epicur-surface');
+            btnComum.classList.replace('text-white', 'text-epicur-text/60');
+            contentEpicuro.classList.remove('hidden');
+            contentComum.classList.add('hidden');
+        });
+
+        // --- Interaction Logic for Section 6/4 (Remedy Cards) ---
+        function toggleRemedy(id) {
+            const textElement = document.getElementById(`rem-${id}-text`);
+            if (textElement.classList.contains('hidden')) {
+                textElement.classList.remove('hidden');
+            } else {
+                textElement.classList.add('hidden');
+            }
+        }
+
+        // --- Chart.js Implementations ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Shared Chart Options
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#2c2925';
+
+            // Chart 1: Desires Doughnut Chart (Section 3)
+            const ctxDesires = document.getElementById('desiresChart').getContext('2d');
+            new Chart(ctxDesires, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Naturais e Necessários (Focar)', 
+                        'Naturais e Não Necessários (Moderar)', 
+                        'Não Naturais e Não Necessários (Evitar)'
+                    ],
+                    datasets: [{
+                        data: [70, 25, 5], // Conceptual data representing focus/effort
+                        backgroundColor: [
+                            '#2e6b4e', // green
+                            '#b57b3c', // amber
+                            '#991b1b'  // red
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' Atenção sugerida: ' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+
+            // Chart 2: Thesis Bar Chart (Section 5)
+            const ctxThesis = document.getElementById('thesisChart').getContext('2d');
+            new Chart(ctxThesis, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        ['Amizade', 'Presencial'], 
+                        ['Satisfação de', 'Necessidades'], 
+                        ['Tempo Ocioso', '(Reflexão)'], 
+                        ['Redes', 'Sociais (Scroll)'], 
+                        ['Busca por', 'Curtidas/Status']
+                    ],
+                    datasets: [{
+                        label: 'Geração de Ataraxia (Paz)',
+                        data: [80, 60, 50, -40, -80], // Negative values for things that destroy peace
+                        backgroundColor: function(context) {
+                            const index = context.dataIndex;
+                            const value = context.dataset.data[index];
+                            return value > 0 ? '#2e6b4e' : '#991b1b'; // Green for positive, Red for negative
+                        },
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Perturbação (-100)  <----  ---->  Ataraxia (+100)',
+                                font: { weight: 'bold' }
+                            },
+                            grid: {
+                                color: '#e5e7eb',
+                                drawBorder: false,
+                            },
+                            min: -100,
+                            max: 100
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let val = context.parsed.x;
+                                    if (val > 0) return 'Gera Paz de Espírito';
+                                    return 'Gera Ansiedade/Perturbação';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
