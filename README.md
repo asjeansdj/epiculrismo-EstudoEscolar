@@ -1,1 +1,7 @@
-# epiculrismo-EstudoEscolar
+Os pontos centrais da doutrina, baseados no site Brasil Escola e em análises contemporâneas, são:
+
+*   **Ataraxia e Aponia:** O objetivo supremo é a **ataraxia** (imperturbabilidade ou paz de espírito) e a **aponia** (ausência de dor física).[2, 3] Diferente do hedonismo vulgar, Epicuro pregava que o prazer real não vem dos excessos, mas da remoção do sofrimento e da tranquilidade da alma.[1, 4, 5]
+*   **Cálculo dos Prazeres e Prudência:** A felicidade exige a **prudência** (*phronesis*) para escolher prazeres que não resultem em dores maiores no futuro.[1, 6] Os desejos são divididos em: **naturais e necessários** (sobrevivência), **naturais e não necessários** (luxos moderados) e **não naturais e não necessários** (fama, poder e riqueza), sendo que estes últimos devem ser totalmente evitados por gerarem angústia.[1, 3]
+*   **Tetraphármakon (Os Quatro Remédios):** Uma fórmula para eliminar os medos fundamentais: 1) Não temer os deuses; 2) Não se preocupar com a morte (pois ela é a ausência de sensação); 3) O bem é fácil de obter; e 4) O que é terrível é suportável.[4]
+*   **Física e Liberdade:** Baseado no atomismo, Epicuro introduziu o conceito de **clinamen** (desvio espontâneo dos átomos), que justifica a existência do livre-arbítrio humano contra o determinismo.[3, 7]
+*   **Visão na Era Digital:** A tese central aplicada à atualidade sugere que a internet e as redes sociais operam de forma oposta ao epicurismo, pois estimulam desejos "não naturais" (como a busca por curtidas e fama) e a comparação constante, gerando ansiedade.[8] O epicurismo moderno manifesta-se como um "minimalismo digital", onde a felicidade é encontrada na qualidade das amizades reais e na desconexão de desejos artificiais.[1, 8]
